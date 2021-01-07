@@ -1,5 +1,9 @@
 module MetaDataArrays
 
-greet() = print("Hello World!")
+using LinearAlgebra, CUDA, Flux
+import Base: +,-,*,/
 
-end # module
+include("abstracttype.jl")
+include("nometadata_type.jl")
+
+end
