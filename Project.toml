@@ -1,0 +1,4 @@
+name = "MetaDataArrays"
+uuid = "01941cc6-6e96-4af3-9b5b-87a9f6423fd1"
+authors = ["Gabrio Rizzuti <rizzuti.gabrio@gmail.com>"]
+version = "0.1.0"
