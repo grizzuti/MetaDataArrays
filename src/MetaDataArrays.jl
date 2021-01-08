@@ -4,6 +4,6 @@ using LinearAlgebra, CUDA, Flux
 import Base: +,-,*,/
 
 include("abstracttype.jl")
-include("nometadata_type.jl")
+include("concretetype.jl")
 
 end

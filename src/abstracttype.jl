@@ -12,7 +12,7 @@ Expected behavior for AbstractMetaDataArray:
     - raw_data(x::AbstractMetaDataArray{MDT,T,N})::some_type<:AbstractArray{T,N} -> Return raw data as an abstract array for which basic linear algebra has been defined
     - meta_data(x::AbstractMetaDataArray{MDT,T,N})::MDT
     - join_metadata(x::AbstractMetaDataArray{MDT,T,N}, y::AbstractMetaDataArray{MDT,T,N})::MDT
-    - metadata_array(raw_data::some_type, meta_data::MDT)<:AbstractMetaDataArray{MDT,T,N}
+    - metadata_array(raw_data::some_type, meta_data::MDT)::CMDT<:AbstractMetaDataArray{MDT,T,N}
 """
 abstract type AbstractMetaDataArray{MDT,T<:Number,N}<:AbstractArray{T,N} end
 
@@ -26,7 +26,7 @@ Base.ndims(::AbstractMetaDataArray{MDT,T,N}) where {MDT,T,N} = N
 # Copying
 
 Base.copy!(x::TF, y::TF) where {TF<:AbstractMetaDataArray} = (copy!(meta_data(x), meta_data(y)); copy!(raw_data(x), raw_data(y)); return x)
-Base.copy(x::AbstractMetaDataArray) = metadata_array(copy(meta_data(x)), copy(raw_data(x)))
+Base.copy(x::AbstractMetaDataArray) = metadata_array(copy(raw_data(x)), copy(meta_data(x)))
 
 
 # Indexing

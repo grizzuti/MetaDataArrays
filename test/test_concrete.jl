@@ -1,8 +1,8 @@
 using MetaDataArrays, LinearAlgebra, CUDA, Flux, Test
 
 # Initialize
-A = TemplateArray(randn(ComplexF32, 5, 5))
-B = TemplateArray(randn(ComplexF32, 5, 5))
+A = NoMetaDataArray(randn(ComplexF32, 5, 5))
+B = NoMetaDataArray(randn(ComplexF32, 5, 5))
 
 # Operations
 A+B
