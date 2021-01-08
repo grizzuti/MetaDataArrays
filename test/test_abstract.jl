@@ -4,24 +4,23 @@ using MetaDataArrays, LinearAlgebra, Test
 module CustomMetaDataArray
 
     using MetaDataArrays
-    import MetaDataArrays: raw_data, meta_data, join_metadata, metadata_array
+    import MetaDataArrays: raw_data, meta_data, join_metadata
     export NamedArray
 
-    struct NamedArray{T,N} <: AbstractMetaDataArray{String,T,N}
-        name::String
+    struct NamedArray{T,N} <: AbstractMetaDataArray{Array{T,N},String,T,N}
         array::Array{T,N}
+        name::String
     end
     raw_data(A::NamedArray) = A.array
     meta_data(A::NamedArray) = A.name
-    join_metadata(A::NamedArray, B::NamedArray) = string(A.name, B.name)
-    metadata_array(array::Array{T,N}, name::String) where {T,N} = NamedArray{T,N}(name, array)
+    join_metadata(s1::String, s2::String) = string(s1, s2)
 
 end
 using .CustomMetaDataArray
 
 # Initialize
-A = NamedArray{ComplexF32,2}("A", randn(ComplexF32, 5, 5))
-B = NamedArray{ComplexF32,2}("B", randn(ComplexF32, 5, 5))
+A = NamedArray{ComplexF32,2}(randn(ComplexF32, 5, 5), "A")
+B = NamedArray{ComplexF32,2}(randn(ComplexF32, 5, 5), "B")
 
 # Operations
 A+B
