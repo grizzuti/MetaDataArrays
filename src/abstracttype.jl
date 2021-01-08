@@ -20,7 +20,7 @@ abstract type AbstractMetaDataArray{ADT,MDT,T<:Number,N}<:AbstractArray{T,N} end
 # Size/dimension
 
 Base.size(x::AbstractMetaDataArray) = size(raw_data(x))
-Base.ndims(::AbstractMetaDataArray{MDT,T,N}) where {MDT,T,N} = N
+Base.ndims(::AbstractMetaDataArray) = ndims(raw_data(x))
 
 
 # Copying
@@ -117,6 +117,5 @@ Base.similar(x::TF) where {TF<:AbstractMetaDataArray} = TF(similar(raw_data(x)),
 
 # CUDA utils
 
-Flux.gpu(x::TF) where {TF<:AbstractMetaDataArray{<:AbstractArray,<:Nothing,<:Number,<:Any}} = TF(gpu(raw_data(x)), nothing)
-Flux.cpu(x::TF) where {TF<:AbstractMetaDataArray{<:AbstractArray,<:Nothing,<:Number,<:Any}} = TF(cpu(raw_data(x)), nothing)
-# Flux.cpu(x::AbstractMetaDataArray{AbstractArray{T,N},Nothing,T,N}) where {T,N} = typeof(x)(cpu(raw_data(x)), nothing)
+Flux.gpu(x::TF) where {TF<:AbstractMetaDataArray{<:AbstractArray,Nothing,<:Number,<:Any}} = TF(gpu(raw_data(x)), nothing)
+Flux.cpu(x::TF) where {TF<:AbstractMetaDataArray{<:AbstractArray,Nothing,<:Number,<:Any}} = TF(cpu(raw_data(x)), nothing)
