@@ -37,5 +37,5 @@ Base.similar(x::AbstractTemplateArray{T,N}) where {T,N} = metadata_array(similar
 
 # CUDA utils
 
-Flux.gpu(x::TemplateArray{T,N}) where {T,N} = CuTemplateArray{T,N}(gpu(raw_data(x)))
-Flux.cpu(x::CuTemplateArray{T,N}) where {T,N} = TemplateArray{T,N}(cpu(raw_data(x)))
+Flux.gpu(x::AbstractTemplateArray) = metadata_array(gpu(raw_data(x)), nothing)
+Flux.cpu(x::AbstractTemplateArray) = metadata_array(cpu(raw_data(x)), nothing)
