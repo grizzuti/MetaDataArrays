@@ -108,7 +108,7 @@ Base.sum(x::TF; dims) where {TF<:AbstractMetaDataArray} = TF(sum(raw_data(x); di
 # Utils
 
 function Base.isapprox(x::TF, y::TF; rtol::Real=sqrt(eps()), atol::Real=0) where {TF<:AbstractMetaDataArray}
-    join_metadata(x,y)
+    join_metadata(meta_data(x),meta_data(y))
     return isapprox(raw_data(x), raw_data(y); rtol=rtol, atol=atol)
 end
 
