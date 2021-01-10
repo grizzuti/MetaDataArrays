@@ -33,7 +33,7 @@ Base.copy(x::TF) where {TF<:AbstractMetaDataArray} = TF(copy(raw_data(x)), copy(
 
 Base.IndexStyle(::Type{<:AbstractMetaDataArray}) = IndexLinear()
 Base.getindex(x::AbstractMetaDataArray, i::Int64) = getindex(raw_data(x), i)
-Base.setindex!(x::AbstractMetaDataArray{MDT,T,N}, val::T, i::Int64) where {MDT,T,N} = (setindex!(raw_data(x), val, i); return x)
+Base.setindex!(x::AbstractMetaDataArray{ADT,MDT,T,N}, val::T, i::Int64) where {ADT,MDT,T,N} = (setindex!(raw_data(x), val, i); return x)
 
 
 # Show
