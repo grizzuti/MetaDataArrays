@@ -20,7 +20,7 @@ abstract type AbstractMetaDataArray{ADT,MDT,T<:Number,N}<:AbstractArray{T,N} end
 # Size/dimension
 
 Base.size(x::AbstractMetaDataArray) = size(raw_data(x))
-Base.ndims(::AbstractMetaDataArray) = ndims(raw_data(x))
+Base.ndims(x::AbstractMetaDataArray) = ndims(raw_data(x))
 
 
 # Copying
