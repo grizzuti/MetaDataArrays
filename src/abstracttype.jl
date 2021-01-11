@@ -59,7 +59,7 @@ Base.broadcasted(::typeof(+), c::Number, x::AbstractMetaDataArray) = x.+c
 
 ## x.-c, c.-x
 Base.broadcasted(::typeof(-), x::TF, c::Number) where {TF<:AbstractMetaDataArray} = TF(raw_data(x).-c, meta_data(x))
-Base.broadcasted(::typeof(-), c::Number, x::AbstractMetaDataArray) = x.-c
+Base.broadcasted(::typeof(-), c::Number, x::TF) where {TF<:AbstractMetaDataArray} = TF(c.-raw_data(x), meta_data(x))
 
 ## x1.*x2
 Base.broadcasted(::typeof(*), x1::TF, x2::TF) where {TF<:AbstractMetaDataArray} = TF(raw_data(x1).*raw_data(x2), join_metadata(meta_data(x1), meta_data(x2)))
