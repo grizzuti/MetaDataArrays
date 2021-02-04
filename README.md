@@ -1,3 +1,3 @@
 # MetaDataArrays
 
-Formalize array+metadata structure with an abstract type. It automatically provides the related linear algebra.
+Formalize array+metadata structure with an abstract type. It automatically provides the related linear algebra, e.g. +/-/* etc.
