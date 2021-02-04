@@ -25,8 +25,14 @@ Base.ndims(x::AbstractMetaDataArray) = ndims(raw_data(x))
 
 # Copying
 
-Base.copy!(x::TF, y::TF) where {TF<:AbstractMetaDataArray} = (copy!(meta_data(x), meta_data(y)); copy!(raw_data(x), raw_data(y)); return x)
 Base.copy(x::TF) where {TF<:AbstractMetaDataArray} = TF(copy(raw_data(x)), copy(meta_data(x)))
+Base.deepcopy(x::TF) where {TF<:AbstractMetaDataArray} = TF(deepcopy(raw_data(x)), deepcopy(meta_data(x)))
+
+function Base.copyto!(x::TF, y::TF) where {TF<:AbstractMetaDataArray} # x.=y
+    copyto!(meta_data(x), meta_data(y))
+    copyto!(raw_data(x), raw_data(y))
+    return x
+end
 
 
 # Indexing
@@ -98,11 +104,13 @@ LinearAlgebra.norm(x::AbstractMetaDataArray, p::Real) = norm(raw_data(x), p)
 ## abs.(x)
 Base.broadcasted(::typeof(abs), x::TF) where {TF<:AbstractMetaDataArray} = TF(abs.(raw_data(x)), meta_data(x))
 
-## fill!
+## fill! (x .= c)
 Base.fill!(x::AbstractMetaDataArray, c::Number) = (fill!(raw_data(x), c); return x)
 
 ## sum(x)
 Base.sum(x::TF; dims) where {TF<:AbstractMetaDataArray} = TF(sum(raw_data(x); dims=dims), meta_data(x))
+
+## =, .=
 
 
 # Utils
