@@ -1,7 +1,7 @@
 name = "MetaDataArrays"
 uuid = "01941cc6-6e96-4af3-9b5b-87a9f6423fd1"
 authors = ["Gabrio Rizzuti <rizzuti.gabrio@gmail.com>"]
-version = "0.1.0"
+version = "1.0.0"
 
 [deps]
 CUDA = "052768ef-5323-5732-b1bb-66c8b64840ba"
